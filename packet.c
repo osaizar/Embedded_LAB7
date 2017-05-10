@@ -10,15 +10,15 @@
 void ReceivePackets(void)
 {
   SerialInit() ;
-  
+
   for (;;)
   {
     int type, byte, bytes ;
     BYTE8 *bfr ;
-    
+
     if (SerialGet() != 0xFF)
       continue ;
-    
+
     switch (type = SerialGet())
     {
       default:
@@ -27,7 +27,7 @@ void ReceivePackets(void)
       case 2:
         break ;
     }
-    
+
     bytes = SerialGet();
     bfr = (BYTE8 *) malloc(bytes) ;
     if (!bfr)
@@ -35,7 +35,7 @@ void ReceivePackets(void)
       for (;;)
         ;
     }
-    
+
     for (byte = 0; byte < bytes; byte++)
     {
       bfr[byte] = SerialGet() ;
@@ -54,7 +54,11 @@ void ReceivePackets(void)
 
 void SendPacket(int type, BYTE8 *bfr, int bytes)
 {
-  /*
-   * Your code here !
-   */
+  int i;
+  SerialPut(0xff);
+  SerialPut(type);
+  SerialPut(bytes);
+  for (i = 0; i < bytes; i++){
+    SerialPut(bfr[i]);
+  }
 }
