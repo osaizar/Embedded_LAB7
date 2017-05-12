@@ -73,6 +73,7 @@ _OSRdyGrp           0x4               /home/TDDI11/sw/lib/elf/ucos_ii.a(os_core.
 _OSIntExitY         0x4               /home/TDDI11/sw/lib/elf/ucos_ii.a(os_core.o)
 _OSPrioCur          0x4               /home/TDDI11/sw/lib/elf/ucos_ii.a(os_core.o)
 _OSQFreeList        0x4               /home/TDDI11/sw/lib/elf/ucos_ii.a(os_core.o)
+event               0x4               packet.o
 _OSIdleCtr          0x4               /home/TDDI11/sw/lib/elf/ucos_ii.a(os_core.o)
 _OSRunning          0x4               /home/TDDI11/sw/lib/elf/ucos_ii.a(os_core.o)
 _OSMemTbl           0x64              /home/TDDI11/sw/lib/elf/ucos_ii.a(os_core.o)
@@ -141,10 +142,10 @@ LOAD /sw/i386-elf-gcc-4.9.0/lib/gcc/i386-elf/4.9.0/libgcc.a
                 0x00000000000004b9                PostTime
                 0x00000000000004da                InboundTime
                 0x0000000000000557                ElapsedLocal
- .text          0x000000000000077f      0x113 packet.o
+ .text          0x000000000000077f      0x120 packet.o
                 0x000000000000077f                ReceivePackets
                 0x000000000000082c                SendPacket
- *fill*         0x0000000000000892        0xe 
+ *fill*         0x000000000000089f        0x1 
  .text          0x00000000000008a0       0x6d isr.o
                 0x00000000000008a0                OSKeyboardISR
                 0x00000000000008d5                OSSerialISR
@@ -349,7 +350,7 @@ LOAD /sw/i386-elf-gcc-4.9.0/lib/gcc/i386-elf/4.9.0/libgcc.a
  *(.rodata.str1.32)
                 0x00000000000066c9                data_last = (. - 0x1)
 
-.bss            0x00000000000066e0     0x2350
+.bss            0x00000000000066e0     0x2354
                 0x00000000000066e0                bss_frst = .
  *(.bss)
  .bss           0x00000000000066e0        0x0 main.o
@@ -387,61 +388,63 @@ LOAD /sw/i386-elf-gcc-4.9.0/lib/gcc/i386-elf/4.9.0/libgcc.a
  .bss           0x000000000000711c        0x0 /home/TDDI11/sw/lib/elf/djgpp/libc.a(enable.o)
  .bss           0x000000000000711c        0x0 /home/TDDI11/sw/lib/elf/djgpp/libc.a(djmd.o)
  *(COMMON)
- COMMON         0x000000000000711c     0x190c /home/TDDI11/sw/lib/elf/ucos_ii.a(os_core.o)
-                0x000000000000711c                _OSTaskCtr
-                0x0000000000007120                _OSTCBCur
-                0x0000000000007124                _OSCtxSwCtr
-                0x0000000000007128                _OSTCBList
-                0x000000000000712c                _OSTCBHighRdy
-                0x0000000000007130                _OSQTbl
-                0x00000000000071a8                _OSRdyTbl
-                0x00000000000071b0                _OSTaskIdleStk
-                0x00000000000079b0                _OSEventTbl
-                0x0000000000007a50                _OSTCBFreeList
-                0x0000000000007a54                _OSRdyGrp
-                0x0000000000007a58                _OSIntExitY
-                0x0000000000007a5c                _OSPrioCur
-                0x0000000000007a60                _OSQFreeList
-                0x0000000000007a64                _OSIdleCtr
-                0x0000000000007a68                _OSRunning
-                0x0000000000007a6c                _OSMemTbl
-                0x0000000000007ad0                _OSPrioHighRdy
-                0x0000000000007ad4                _OSTCBPrioTbl
-                0x0000000000007bd4                _OSLockNesting
-                0x0000000000007bd8                _OSTime
-                0x0000000000007bdc                _OSFlagTbl
-                0x0000000000007c18                _OSTCBTbl
-                0x0000000000008a18                _OSIntNesting
-                0x0000000000008a1c                _OSEventFreeList
-                0x0000000000008a20                _OSMemFreeList
-                0x0000000000008a24                _OSFlagFreeList
- COMMON         0x0000000000008a28        0x8 /home/TDDI11/sw/lib/elf/ucos_ii.a(os_cpu_c.o)
-                0x0000000000008a28                _OldTickISR
-                0x0000000000008a2c                _OSTickDOSCtr
-                0x0000000000008a2f                bss_last = (. - 0x1)
+ COMMON         0x000000000000711c        0x4 packet.o
+                0x000000000000711c                event
+ COMMON         0x0000000000007120     0x190c /home/TDDI11/sw/lib/elf/ucos_ii.a(os_core.o)
+                0x0000000000007120                _OSTaskCtr
+                0x0000000000007124                _OSTCBCur
+                0x0000000000007128                _OSCtxSwCtr
+                0x000000000000712c                _OSTCBList
+                0x0000000000007130                _OSTCBHighRdy
+                0x0000000000007134                _OSQTbl
+                0x00000000000071ac                _OSRdyTbl
+                0x00000000000071b4                _OSTaskIdleStk
+                0x00000000000079b4                _OSEventTbl
+                0x0000000000007a54                _OSTCBFreeList
+                0x0000000000007a58                _OSRdyGrp
+                0x0000000000007a5c                _OSIntExitY
+                0x0000000000007a60                _OSPrioCur
+                0x0000000000007a64                _OSQFreeList
+                0x0000000000007a68                _OSIdleCtr
+                0x0000000000007a6c                _OSRunning
+                0x0000000000007a70                _OSMemTbl
+                0x0000000000007ad4                _OSPrioHighRdy
+                0x0000000000007ad8                _OSTCBPrioTbl
+                0x0000000000007bd8                _OSLockNesting
+                0x0000000000007bdc                _OSTime
+                0x0000000000007be0                _OSFlagTbl
+                0x0000000000007c1c                _OSTCBTbl
+                0x0000000000008a1c                _OSIntNesting
+                0x0000000000008a20                _OSEventFreeList
+                0x0000000000008a24                _OSMemFreeList
+                0x0000000000008a28                _OSFlagFreeList
+ COMMON         0x0000000000008a2c        0x8 /home/TDDI11/sw/lib/elf/ucos_ii.a(os_cpu_c.o)
+                0x0000000000008a2c                _OldTickISR
+                0x0000000000008a30                _OSTickDOSCtr
+                0x0000000000008a33                bss_last = (. - 0x1)
 
 /DISCARD/
  *(.eh_frame)
-                0x0000000000008a30                stack_frst = (bss_last + 0x1)
-                0x0000000000010a2f                stack_last = (bss_last + 0x8000)
-                0x0000000000010a30                heap_frst = (stack_last + 0x1)
+                0x0000000000008a34                stack_frst = (bss_last + 0x1)
+                0x0000000000010a33                stack_last = (bss_last + 0x8000)
+                0x0000000000010a34                heap_frst = (stack_last + 0x1)
 OUTPUT(embedded.bin binary)
 
-.debug_info     0x0000000000000000      0xc17
+.debug_info     0x0000000000000000      0xcaa
  .debug_info    0x0000000000000000       0xd6 main.o
  .debug_info    0x00000000000000d6      0x1a4 serial.o
  .debug_info    0x000000000000027a      0x264 inbound.o
  .debug_info    0x00000000000004de      0x26e outbound.o
  .debug_info    0x000000000000074c      0x392 elapsed.o
- .debug_info    0x0000000000000ade      0x139 packet.o
+ .debug_info    0x0000000000000ade      0x1cc packet.o
 
-.debug_abbrev   0x0000000000000000      0x56b
+.debug_abbrev   0x0000000000000000      0x599
  .debug_abbrev  0x0000000000000000       0x81 main.o
  .debug_abbrev  0x0000000000000081       0xe9 serial.o
  .debug_abbrev  0x000000000000016a       0xfb inbound.o
  .debug_abbrev  0x0000000000000265      0x113 outbound.o
  .debug_abbrev  0x0000000000000378      0x13c elapsed.o
- .debug_abbrev  0x00000000000004b4       0xb7 packet.o
+ .debug_abbrev  0x00000000000004b4       0xe5 packet.o
 
 .debug_aranges  0x0000000000000000       0xc0
  .debug_aranges
@@ -457,21 +460,21 @@ OUTPUT(embedded.bin binary)
  .debug_aranges
                 0x00000000000000a0       0x20 packet.o
 
-.debug_line     0x0000000000000000      0x42a
+.debug_line     0x0000000000000000      0x44a
  .debug_line    0x0000000000000000       0x76 main.o
  .debug_line    0x0000000000000076       0x9d serial.o
  .debug_line    0x0000000000000113       0x99 inbound.o
  .debug_line    0x00000000000001ac       0xdd outbound.o
  .debug_line    0x0000000000000289       0xff elapsed.o
- .debug_line    0x0000000000000388       0xa2 packet.o
+ .debug_line    0x0000000000000388       0xc2 packet.o
 
-.debug_str      0x0000000000000000      0x93b
+.debug_str      0x0000000000000000      0x98f
  .debug_str     0x0000000000000000      0x111 main.o
  .debug_str     0x0000000000000111      0x180 serial.o
  .debug_str     0x0000000000000291      0x1ac inbound.o
  .debug_str     0x000000000000043d      0x1ce outbound.o
  .debug_str     0x000000000000060b      0x205 elapsed.o
- .debug_str     0x0000000000000810      0x12b packet.o
+ .debug_str     0x0000000000000810      0x17f packet.o
 
 .comment        0x0000000000000000       0x6c
  .comment       0x0000000000000000       0x12 main.o

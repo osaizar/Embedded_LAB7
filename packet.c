@@ -7,6 +7,8 @@
 #include "elapsed.h"
 #include "serial.h"
 
+OS_EVENT *event;
+
 void ReceivePackets(void)
 {
   SerialInit() ;
@@ -55,10 +57,20 @@ void ReceivePackets(void)
 void SendPacket(int type, BYTE8 *bfr, int bytes)
 {
   int i;
+
+  if (event == NULL){
+      event = OSSemCreate(1);
+  }
+
+  OSSemPend(event, 0, NULL);
+
   SerialPut(0xff);
   SerialPut(type);
   SerialPut(bytes);
   for (i = 0; i < bytes; i++){
     SerialPut(bfr[i]);
+    OSTimeDly(10);
   }
+
+  OSSemPost(event);
 }
